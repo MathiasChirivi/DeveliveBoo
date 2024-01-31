@@ -28,9 +28,21 @@ export default {
           console.error("Error fetching restaurants:", error);
         });
     },
+    getTypologies() {
+      axios
+        .get("http://localhost:8000/api/typologies", {})
+        .then((response) => {
+          console.log("Response data:", response.data);
+          this.arrTypologies = response.data.results;
+        })
+        .catch((error) => {
+          console.error("Error fetching typologies:", error);
+        });
+    },
   },
   mounted() {
     this.getRestaurants();
+    this.getTypologies();
   },
 };
 </script>
@@ -38,6 +50,29 @@ export default {
 <template>
   <main>
     <h1>sono la home</h1>
+    <div v-if="arrTypologies.length > 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <label for="typologySelect">Seleziona Tipologia:</label>
+            <select
+              v-model="selectedTypology"
+              id="typologySelect"
+              class="form-select mb-5"
+            >
+              <option value="" disabled>Seleziona una tipologia</option>
+              <option
+                v-for="typology in arrTypologies"
+                :key="typology.id"
+                :value="typology.id"
+              >
+                {{ typology.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row" v-if="arrRestaurants.length > 0">
         <div
