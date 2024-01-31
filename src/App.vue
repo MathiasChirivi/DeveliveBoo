@@ -1,13 +1,23 @@
 <script>
+import AppHeader from './components/AppHeader.vue';
 
+
+export default {
+  name: "App",
+  data(){
+    return{
+
+    }
+  },
+  components: {
+    AppHeader,
+}
+}
 </script>
 
 <template>
   <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
+    <AppHeader />
   </header>
   <main>
     <RouterView />
