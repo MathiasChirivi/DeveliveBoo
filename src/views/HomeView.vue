@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <main>
+  <!-- <main>
     <h1>sono la home</h1>
     <div class="row" v-if="arrRestaurants.length > 0">
       <div class="col-md-4 mb-4" v-for="restaurant in arrRestaurants" :key="restaurant.id">
@@ -60,5 +60,5 @@ export default {
       </div>
     </div>
     <p v-else>Nessun ristorante trovato</p>
-  </main>
+  </main> -->
 </template>
