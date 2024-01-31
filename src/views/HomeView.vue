@@ -1,117 +1,76 @@
 <script>
-import axios from "axios";
-
-export default {
-  data() {
-    return {
-      arrRestaurants: [],
-      arrTypologies: [],
-      searchString: "",
-      page: 1,
-      totalPages: 0,
-    };
-  },
-  methods: {
-    getRestaurants() {
-      axios
-        .get("http://localhost:8000/api/restaurants", {
-          params: {
-            page: this.page,
-            q: this.searchString,
-          },
-        })
-        .then((response) => {
-          console.log("Response data:", response.data);
-          this.arrRestaurants = response.data.results.data;
-        })
-        .catch((error) => {
-          console.error("Error fetching restaurants:", error);
-        });
-    },
-    getTypologies() {
-      axios
-        .get("http://localhost:8000/api/typologies", {})
-        .then((response) => {
-          console.log("Response data:", response.data);
-          this.arrTypologies = response.data.results;
-        })
-        .catch((error) => {
-          console.error("Error fetching typologies:", error);
-        });
-    },
-  },
-  mounted() {
-    this.getRestaurants();
-    this.getTypologies();
-  },
-};
 </script>
 
+
 <template>
-  <main>
-    <h1>sono la home</h1>
-    <div v-if="arrTypologies.length > 0">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <label for="typologySelect">Seleziona Tipologia:</label>
-            <select
-              v-model="selectedTypology"
-              id="typologySelect"
-              class="form-select mb-5"
-            >
-              <option value="" disabled>Seleziona una tipologia</option>
-              <option
-                v-for="typology in arrTypologies"
-                :key="typology.id"
-                :value="typology.id"
-              >
-                {{ typology.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row" v-if="arrRestaurants.length > 0">
-        <div
-          class="col-md-4 mb-4"
-          v-for="restaurant in arrRestaurants"
-          :key="restaurant.id"
-        >
-          <div class="card h-100">
-            <div class="h-100">
-              <img
-                :src="restaurant.photo"
-                class="card-img-top"
-                alt="Restaurant Photo"
-                style="height: 300px"
-              />
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ restaurant.name }}</h5>
-              <p class="card-text">{{ restaurant.address }}</p>
-              <h6>Tipologie:</h6>
-              <ul class="list-unstyled">
-                <li
-                  v-for="typology in restaurant.typologies"
-                  :key="typology.id"
-                >
-                  {{ typology.name }}
-                </li>
-              </ul>
-              <h6>Piatti:</h6>
-              <ul class="list-unstyled">
-                <li v-for="dish in restaurant.dishes" :key="dish.id">
-                  {{ dish.name }} - {{ dish.description }}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p v-else>Nessun ristorante trovato</p>
-    </div>
-  </main>
-</template>
+    <section id="home">
+      <h1 class="h-primary">Welcome to Deliveboo</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod.</p>
+      <a class="btn btn-light">Order Now</a>
+    </section>
+  </template>
+
+<style>
+/* Home Section */
+#home{
+    display: flex;
+    flex-direction: column;
+    padding: 3px 200px;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    position: relative;
+}
+
+#home::before{
+    content: "";
+    background: linear-gradient(rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.6)), url("https://media.istockphoto.com/id/1191080960/photo/traditional-turkish-breakfast-and-people-taking-various-food-wide-composition.jpg?s=612x612&w=0&k=20&c=PP5ejMisEwzcLWrNmJ8iPPm_u-4P6rOWHEDpBPL2n7Q=") no-repeat center center/cover;
+    opacity: 0.9;
+    position: absolute;
+    height: 600px;
+    width: 100%;
+    z-index: -1;
+    top: -85px;
+    left: 0px;
+}
+
+#home h1{
+    color: floralwhite;
+    text-align: center;
+    font-family: 'Baloo Bhai 2', cursive;
+}
+
+#home p{
+    color: floralwhite;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Baloo Bhai 2', cursive;
+}
+
+/* Services Section */
+#services{
+    margin: 34px;
+    display: flex;
+}
+
+#services .box{
+    border: 2px solid black;
+    padding: 10px;
+    margin: 3px 10px;
+    border-radius: 40px;
+    background-color: rgb(235, 227, 227);
+}
+
+#services .box img{
+    height: 160px;
+    margin: auto;
+    display: block;
+}
+
+#services .box p{
+    font-family: 'Baloo Bhai 2', cursive;
+    text-align: justify;
+}
+
+</style>
