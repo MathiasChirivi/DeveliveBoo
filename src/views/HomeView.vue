@@ -1,5 +1,6 @@
 <script>
 import AppHome from '../components/AppHome.vue';
+import AppFooter from '../components/AppFooter.vue';
 
 export default {
     name: "AppView",
@@ -10,6 +11,7 @@ export default {
     },
     components: {
         AppHome,
+        AppFooter
     },
 }
 </script>
@@ -21,6 +23,7 @@ export default {
         <a class="btn btn-light">Order Now</a>
     </section>
     <AppHome></AppHome>
+    <AppFooter></AppFooter>
 </template>
 
 <style>
