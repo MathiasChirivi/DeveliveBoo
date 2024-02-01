@@ -26,6 +26,9 @@ export default {
     },
   },
   methods: {
+    resetFilters() {
+      this.selectedTypology = '';
+    },
     getRestaurants() {
       axios
         .get("http://localhost:8000/api/restaurants", {
@@ -82,6 +85,13 @@ export default {
                 {{ typology.name }}
               </option>
             </select>
+          </div>
+        </div>
+        <div class="row mt-3" v-if="selectedTypology !== ''">
+          <div class="col-12">
+            <button @click="resetFilters">
+              <font-awesome-icon :icon="['fas', 'arrow-left']" />Tutti i ristoranti
+            </button>
           </div>
         </div>
       </div>

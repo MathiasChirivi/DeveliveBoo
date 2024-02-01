@@ -77,7 +77,7 @@ nav{
     content: "";
     background: linear-gradient(rgba(0, 0, 0, 0.9),
     rgba(0, 0, 0, 0.6)), url("https://media.istockphoto.com/id/1191080960/photo/traditional-turkish-breakfast-and-people-taking-various-food-wide-composition.jpg?s=612x612&w=0&k=20&c=PP5ejMisEwzcLWrNmJ8iPPm_u-4P6rOWHEDpBPL2n7Q=") no-repeat center center/cover;
-    opacity: 0.9;
+    opacity: 1;
     position: absolute;
     height: 100%;
     width: 100%;
