@@ -63,7 +63,6 @@ export default {
 
 <template>
   <main>
-    <h1>sono i Ristoranti</h1>
     <div v-if="arrTypologies.length > 0">
       <div class="container">
         <div class="row">

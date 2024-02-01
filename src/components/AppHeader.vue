@@ -6,19 +6,12 @@ export default {
   data() {
     return {
       navLinks: [
-        { label: "home", name: "home" },
+        { label: "Home", name: "Home" },
         { label: "Ristoranti", name: "Ristoranti" },
       ],
-      showSearchBar: false,
     };
   },
   components: { RouterLink },
-  setup() {
-    const route = useRoute();
-    return {
-      currentRoute: route.name,
-    };
-  },
 };
 </script>
 
@@ -57,9 +50,6 @@ export default {
                </router-link>
              </li>
            </ul>
-           <div v-if="currentRoute === 'Ristoranti'" class="search-bar">
-             <input type="text" placeholder="Search..">
-           </div>
            <form class="d-flex gap-2">
              <a class="btn btn-light" href="http://localhost:8000/login">Login</a>
              <a class="btn btn-light" href="http://localhost:8000/register">Register</a>
@@ -85,18 +75,14 @@ nav{
 
 .navbar::before{
     content: "";
-    background-color: black !important;
-    opacity: 0.6;
+    background: linear-gradient(rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.6)), url("https://media.istockphoto.com/id/1191080960/photo/traditional-turkish-breakfast-and-people-taking-various-food-wide-composition.jpg?s=612x612&w=0&k=20&c=PP5ejMisEwzcLWrNmJ8iPPm_u-4P6rOWHEDpBPL2n7Q=") no-repeat center center/cover;
+    opacity: 0.9;
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: -1;
     top: 0px;
     left: 0px;
-}
-
-bg-white {
-  background-color: white !important;
-  color: black; /* Aggiungi questo se vuoi cambiare anche il colore del testo */
 }
 </style>
