@@ -1,14 +1,27 @@
 <script>
-</script>
+import AppHome from '../components/AppHome.vue';
 
+export default {
+    name: "AppView",
+    data() {
+        return {
+        
+        }
+    },
+    components: {
+        AppHome,
+    },
+}
+</script>
 
 <template>
     <section id="home">
-      <h1 class="h-primary">Welcome to Deliveboo</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod.</p>
-      <a class="btn btn-light">Order Now</a>
+        <h1 class="h-primary">Welcome to Deliveboo</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod.</p>
+        <a class="btn btn-light">Order Now</a>
     </section>
-  </template>
+    <AppHome></AppHome>
+</template>
 
 <style>
 /* Home Section */
@@ -72,5 +85,4 @@
     font-family: 'Baloo Bhai 2', cursive;
     text-align: justify;
 }
-
 </style>

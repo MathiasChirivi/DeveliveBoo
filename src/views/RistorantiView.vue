@@ -9,7 +9,21 @@ export default {
       searchString: "",
       page: 1,
       totalPages: 0,
+      selectedTypology: "",
     };
+  },
+  computed: {
+    filteredRestaurants() {
+      if (this.selectedTypology === "") {
+        return this.arrRestaurants;
+      } else {
+        return this.arrRestaurants.filter((restaurant) =>
+          restaurant.typologies.some(
+            (typology) => typology.id === this.selectedTypology
+          )
+        );
+      }
+    },
   },
   methods: {
     getRestaurants() {
@@ -74,10 +88,10 @@ export default {
       </div>
     </div>
     <div class="container">
-      <div class="row" v-if="arrRestaurants.length > 0">
+      <div class="row" v-if="filteredRestaurants.length > 0">
         <div
           class="col-md-4 mb-4"
-          v-for="restaurant in arrRestaurants"
+          v-for="restaurant in filteredRestaurants"
           :key="restaurant.id"
         >
           <div class="card h-100">
