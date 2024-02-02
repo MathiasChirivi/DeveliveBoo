@@ -60,8 +60,7 @@ export default {
       this.selectedTypology = typologyId;
     },
     showRestaurantDetails(restaurantId) {
-      // Implement logic to show restaurant details, if needed
-      console.log("Show details for restaurant with ID:", restaurantId);
+      this.$router.push({ name: 'SingleRestaurant', params: { id: restaurantId } });
     },
   },
   mounted() {
