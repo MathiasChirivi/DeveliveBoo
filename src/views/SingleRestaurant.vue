@@ -13,9 +13,8 @@ export default {
       axios
         .get(`http://localhost:8000/api/restaurants/${restaurantId}`)
         .then((response) => {
-          console.log("Restaurant details:", response.data);
-
-          if (response.data.result && response.data.result.name !== null) {
+          // console.log("Restaurant details:", response.data);
+          if (response.data.result !== null) {
             this.restaurant = response.data.result;
           } else {
             console.error("Invalid restaurant data:", response.data.result);
