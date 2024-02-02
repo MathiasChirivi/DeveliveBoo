@@ -14,10 +14,12 @@ export default {
         .get(`http://localhost:8000/api/restaurants/${restaurantId}`)
         .then((response) => {
           console.log("Restaurant details:", response.data);
-          this.restaurant = response.data;
-        })
-        .catch((error) => {
-          console.error("Error fetching restaurant details:", error);
+
+          if (response.data.result && response.data.result.name !== null) {
+            this.restaurant = response.data.result;
+          } else {
+            console.error("Invalid restaurant data:", response.data.result);
+          }
         });
     },
   },
