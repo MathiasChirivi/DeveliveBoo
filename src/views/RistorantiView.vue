@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     resetFilters() {
-      this.selectedTypology = '';
+      this.selectedTypology = "";
     },
     getRestaurants() {
       axios
@@ -38,7 +38,7 @@ export default {
           },
         })
         .then((response) => {
-          console.log("Response data:", response.data);
+          // console.log("Response data:", response.data);
           this.arrRestaurants = response.data.results.data;
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ export default {
       axios
         .get("http://localhost:8000/api/typologies", {})
         .then((response) => {
-          console.log("Response data:", response.data);
+          // console.log("Response data:", response.data);
           this.arrTypologies = response.data.results;
         })
         .catch((error) => {
@@ -60,7 +60,10 @@ export default {
       this.selectedTypology = typologyId;
     },
     showRestaurantDetails(restaurantId) {
-      this.$router.push({ name: 'SingleRestaurant', params: { id: restaurantId } });
+      this.$router.push({
+        name: "SingleRestaurant",
+        params: { id: restaurantId },
+      });
     },
   },
   mounted() {
@@ -70,54 +73,71 @@ export default {
 };
 </script>
 
-
 <template>
-<main>
-  <div v-if="arrTypologies.length > 0">
+  <main>
+    <div v-if="arrTypologies.length > 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex gap-2">
+            <div
+              class="card"
+              v-for="typology in arrTypologies"
+              :key="typology.id"
+              @click="filterByTypology(typology.id)"
+            >
+              <img
+                :src="typology.image"
+                class="card-img-top"
+                alt="Typology Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ typology.name }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3" v-if="selectedTypology !== ''">
+          <div class="col-12">
+            <button @click="resetFilters">
+              <font-awesome-icon :icon="['fas', 'arrow-left']" />Tutti i
+              ristoranti
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
-      <div class="row">
-        <div class="col-12 d-flex gap-2">
-          <div class="card" v-for="typology in arrTypologies" :key="typology.id" @click="filterByTypology(typology.id)">
-            <img :src="typology.image" class="card-img-top" alt="Typology Image">
+      <div class="row" v-if="filteredRestaurants.length > 0">
+        <div
+          class="col-md-4 mb-4"
+          v-for="restaurant in filteredRestaurants"
+          :key="restaurant.id"
+        >
+          <div class="card h-100" @click="showRestaurantDetails(restaurant.id)">
+            <div class="h-100">
+              <img
+                :src="restaurant.photo"
+                class="card-img-top"
+                alt="Restaurant Photo"
+                style="height: 300px"
+              />
+            </div>
             <div class="card-body">
-              <h5 class="card-title">{{ typology.name }}</h5>
+              <h5 class="card-title">{{ restaurant.name }}</h5>
+              <p class="card-text">{{ restaurant.address }}</p>
+              <!-- <h6>Tipologie:</h6>
+            <ul class="list-unstyled">
+              <li v-for="typology in restaurant.typologies" :key="typology.id">{{ typology.name }}</li>
+            </ul> -->
+              <!-- <h6>Piatti:</h6>
+            <ul class="list-unstyled">
+              <li v-for="dish in restaurant.dishes" :key="dish.id">{{ dish.name }} - {{ dish.description }}</li>
+            </ul> -->
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-3" v-if="selectedTypology !== ''">
-        <div class="col-12">
-          <button @click="resetFilters">
-            <font-awesome-icon :icon="['fas', 'arrow-left']" />Tutti i ristoranti
-          </button>
-        </div>
-      </div>
+      <p v-else>Nessun ristorante trovato</p>
     </div>
-  </div>
-  <div class="container">
-    <div class="row" v-if="filteredRestaurants.length > 0">
-      <div class="col-md-4 mb-4" v-for="restaurant in filteredRestaurants" :key="restaurant.id">
-        <div class="card h-100" @click="showRestaurantDetails(restaurant.id)">
-          <div class="h-100">
-            <img :src="restaurant.photo" class="card-img-top" alt="Restaurant Photo" style="height: 300px">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ restaurant.name }}</h5>
-            <p class="card-text">{{ restaurant.address }}</p>
-            <!-- <h6>Tipologie:</h6>
-            <ul class="list-unstyled">
-              <li v-for="typology in restaurant.typologies" :key="typology.id">{{ typology.name }}</li>
-            </ul> -->
-            <!-- <h6>Piatti:</h6>
-            <ul class="list-unstyled">
-              <li v-for="dish in restaurant.dishes" :key="dish.id">{{ dish.name }} - {{ dish.description }}</li>
-            </ul> -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <p v-else>Nessun ristorante trovato</p>
-  </div>
-</main>
-
+  </main>
 </template>
