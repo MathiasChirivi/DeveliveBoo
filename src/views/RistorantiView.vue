@@ -75,26 +75,30 @@ export default {
 
 <template>
   <main>
-    <div v-if="arrTypologies.length > 0">
+    <div class="container">
+      <div v-if="arrTypologies.length > 0">
+      <div class="col-12 d-flex flex-wrap gap-1 my-2 align-center justify-content-center">
+        <div
+          class="card"
+          style="width: 120px; height: 135px;"
+          v-for="typology in arrTypologies"
+          :key="typology.id"
+          @click="filterByTypology(typology.id)"
+        >
+          <img
+            :src="typology.image"
+            class="card-img-top"
+            alt="Typology Image"
+            style="height: 60px"
+          />
+          <div class="card-body">
+            <p class="card-title f-1">{{ typology.name }}</p>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div class="row">
-          <div class="col-12 d-flex gap-2">
-            <div
-              class="card"
-              v-for="typology in arrTypologies"
-              :key="typology.id"
-              @click="filterByTypology(typology.id)"
-            >
-              <img
-                :src="typology.image"
-                class="card-img-top"
-                alt="Typology Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">{{ typology.name }}</h5>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div class="row mt-3" v-if="selectedTypology !== ''">
           <div class="col-12">
@@ -106,7 +110,6 @@ export default {
         </div>
       </div>
     </div>
-    <div class="container">
       <div class="row" v-if="filteredRestaurants.length > 0">
         <div
           class="col-md-4 mb-4"
