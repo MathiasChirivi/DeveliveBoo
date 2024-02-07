@@ -26,7 +26,7 @@ export default {
     <AppFooter></AppFooter>
 </template>
 
-<style>
+<style scoped>
 /* Home Section */
 #home{
     display: flex;
