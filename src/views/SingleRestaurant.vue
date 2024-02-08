@@ -57,7 +57,7 @@ export default {
     <div class="me-4 ms-4">
       <div class="row d-flex justify-content-between">
         <div
-          class="col-10 d-flex flex-wrap gap-3"
+          class="col-9 d-flex flex-wrap gap-3"
           v-if="restaurant && restaurant.dishes"
         >
           <div
@@ -89,7 +89,17 @@ export default {
             </div>
           </div>
         </div>
-        <div class="col-2">Carello</div>
+        <div class="col-3 mt-3">
+          <div class="carello flex-column align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <font-awesome-icon :icon="['fas', 'basket-shopping']" />
+              <p class="mt-2">Il carello è vuoto</p>
+            </div>
+            <div class="mt-4">
+              <button type="button" class="btn btn-secondary" disabled>Vai al pagamento</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -127,11 +137,10 @@ export default {
 }
 
 .textTruncate {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-  }
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
 
 .card img {
   max-width: 25%;
@@ -161,5 +170,16 @@ export default {
 .card.bg-light-subtle .cta-section .btn {
   background-color: #898989;
   border-color: #898989;
+}
+
+.carello{
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+  width: 400px;
+  height: 230px;
+  background-color: #f3f3f3;
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
 }
 </style>
