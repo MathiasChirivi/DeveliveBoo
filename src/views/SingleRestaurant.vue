@@ -1,6 +1,6 @@
 <script>
   import axios from "axios";
-
+  import { v4 as uuidv4 } from 'uuid';
 
   export default {
     data() {
@@ -23,6 +23,7 @@
           });
       },
       addToCart(dish) {
+        dish.id = uuidv4();
         this.$store.dispatch('addToCart', dish);
       },
       addOrderToCart() {
@@ -69,6 +70,7 @@
           </div>
         </div>
       </div>
+      <a href="http://localhost:5174/Ristoranti">Torna ai ristoranti</a>
 
     </div>
     <div v-else>
