@@ -1,35 +1,43 @@
 <script>
-import axios from "axios";
+  import axios from "axios";
+  import { v4 as uuidv4 } from 'uuid';
 
-export default {
-  data() {
-    return {
-      restaurant: null,
-      typology: null,
+  export default {
+    data() {
+      return {
+        restaurant: null,
+        typology: null,
     };
-  },
-  methods: {
-    getRestaurantDetails() {
-      const restaurantId = this.$route.params.id;
-      axios
-        .get(`http://localhost:8000/api/restaurants/${restaurantId}`)
-        .then((response) => {
-          if (response.data.result !== null) {
-            this.restaurant = response.data.result;
-            this.typology =
+    },
+    methods: {
+      getRestaurantDetails() {
+        const restaurantId = this.$route.params.id;
+        axios
+          .get(`http://localhost:8000/api/restaurants/${restaurantId}`)
+          .then((response) => {
+              if (response.data.result !== null) {
+              this.restaurant = response.data.result;
+              this.typology =
               this.restaurant.typologies.length > 0
                 ? this.restaurant.typologies[0]
                 : null;
           } else {
-            console.error("Invalid restaurant data:", response.data.result);
-          }
-        });
+              console.error("Invalid restaurant data:", response.data.result);
+            }
+          });
+      },
+      addToCart(dish) {
+        dish.id = uuidv4();
+        this.$store.dispatch('addToCart', dish);
+      },
+      addOrderToCart() {
+        this.$router.push('/cart');
+      }
     },
-  },
-  mounted() {
-    this.getRestaurantDetails();
-  },
-};
+    mounted() {
+      this.getRestaurantDetails();
+    },
+  };
 </script>
 
 <template>
@@ -87,7 +95,7 @@ export default {
                 </div>
                 <div class="cta-section">
                   <div>{{ dish.price }}</div>
-                  <a href="#" class="btn btn-dark">Buy Now</a>
+                  <a href="#" class="btn btn-dark" @click="addToCart(dish)">Buy Now</a>
                 </div>
               </div>
             </div>
@@ -105,6 +113,7 @@ export default {
               <button type="button" class="btn btn-secondary" disabled>
                 Vai al pagamento
               </button>
+              <button class="btn btn-success" @click="addOrderToCart()">Conferma ordine</button>
             </div>
           </div>
         </div>
