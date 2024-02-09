@@ -56,7 +56,7 @@
     
 </template>
 
-<style>
+<style scoped>
 .footer{
     background: rgb(39, 39, 39);
     color: #b2b2b2;

@@ -4,9 +4,9 @@ import router from './router';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faClock, faTrophy, faCheckCircle, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faClock, faTrophy, faCheckCircle, faArrowLeft);
+library.add(faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket);
 
 const app = createApp(App);
 

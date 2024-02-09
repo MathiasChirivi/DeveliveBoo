@@ -61,7 +61,7 @@
   <!-- End About -->
 </template>
 
-<style>
+<style scoped>
 #how-it-works {
   width: 80%;
   margin: 0 auto;
