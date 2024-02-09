@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       restaurant: null,
-      typology: null, // Aggiunto typology
+      typology: null,
     };
   },
   methods: {
@@ -16,7 +16,6 @@ export default {
         .then((response) => {
           if (response.data.result !== null) {
             this.restaurant = response.data.result;
-            // Aggiunto per assegnare la prima tipologia del ristorante a 'typology'
             this.typology =
               this.restaurant.typologies.length > 0
                 ? this.restaurant.typologies[0]
@@ -36,7 +35,10 @@ export default {
 <template>
   <div class="colorContainer">
     <div class="container pt-5 pb-5">
-      <div class="mb-3">Torna indietro</div>
+      <router-link to="/Ristoranti" class="mb-3 btn">
+        <font-awesome-icon :icon="['fas', 'arrow-left']" />
+        Torna indietro
+      </router-link>
       <div v-if="restaurant">
         <div class="d-flex container">
           <img class="imgRestaurant me-3" :src="restaurant.photo" alt="" />
@@ -65,7 +67,9 @@ export default {
             v-for="dish in restaurant.dishes"
             :key="dish.id"
           >
-            <div class="card bg-light-subtle mt-4">
+            <div
+              class="card bg-light-subtle mt-4"
+            >
               <img
                 class="card-img-top"
                 :src="
@@ -91,12 +95,16 @@ export default {
         </div>
         <div class="col-3 mt-3">
           <div class="carello flex-column align-items-center">
-            <div class="d-flex flex-column justify-content-center align-items-center">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
               <font-awesome-icon :icon="['fas', 'basket-shopping']" />
               <p class="mt-2">Il carello è vuoto</p>
             </div>
             <div class="mt-4">
-              <button type="button" class="btn btn-secondary" disabled>Vai al pagamento</button>
+              <button type="button" class="btn btn-secondary" disabled>
+                Vai al pagamento
+              </button>
             </div>
           </div>
         </div>
@@ -137,8 +145,9 @@ export default {
 }
 
 .textTruncate {
+  display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -172,7 +181,7 @@ export default {
   border-color: #898989;
 }
 
-.carello{
+.carello {
   display: flex;
   justify-content: center;
   margin-right: 30px;

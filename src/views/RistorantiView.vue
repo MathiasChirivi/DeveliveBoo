@@ -77,39 +77,39 @@ export default {
   <main>
     <div class="container">
       <div v-if="arrTypologies.length > 0">
-      <div class="col-12 d-flex flex-wrap gap-1 my-2 align-center justify-content-center">
         <div
-          class="card"
-          style="width: 120px; height: 135px;"
-          v-for="typology in arrTypologies"
-          :key="typology.id"
-          @click="filterByTypology(typology.id)"
+          class="col-12 d-flex flex-wrap gap-1 my-2 align-center justify-content-center"
         >
-          <img
-            :src="typology.image"
-            class="card-img-top"
-            alt="Typology Image"
-            style="height: 60px"
-          />
-          <div class="card-body">
-            <p class="card-title f-1">{{ typology.name }}</p>
+          <div
+            class="card"
+            style="width: 120px; height: 135px"
+            v-for="typology in arrTypologies"
+            :key="typology.id"
+            @click="filterByTypology(typology.id)"
+          >
+            <img
+              :src="typology.image"
+              class="card-img-top"
+              alt="Typology Image"
+              style="height: 60px"
+            />
+            <div class="card-body">
+              <p class="card-title f-1">{{ typology.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row"></div>
+          <div class="row mt-3" v-if="selectedTypology !== ''">
+            <div class="col-12">
+              <button @click="resetFilters" class="btn mb-4">
+                <font-awesome-icon :icon="['fas', 'arrow-left']" />Tutti i
+                ristoranti
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          
-        </div>
-        <div class="row mt-3" v-if="selectedTypology !== ''">
-          <div class="col-12">
-            <button @click="resetFilters">
-              <font-awesome-icon :icon="['fas', 'arrow-left']" />Tutti i
-              ristoranti
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
       <div class="row" v-if="filteredRestaurants.length > 0">
         <div
           class="col-md-4 mb-4"
@@ -119,11 +119,11 @@ export default {
           <div class="card h-100" @click="showRestaurantDetails(restaurant.id)">
             <div class="h-100">
               <img
-                :src="restaurant.photo"
-                class="card-img-top"
-                alt="Restaurant Photo"
-                style="height: 300px"
-              />
+  :src="restaurant.photo ? restaurant.photo : 'https://cwdaust.com.au/wpress/wp-content/uploads/2015/04/placeholder-restaurant.png'"
+  class="card-img-top"
+  alt="Restaurant Photo"
+  style="height: 300px"
+/>
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ restaurant.name }}</h5>
