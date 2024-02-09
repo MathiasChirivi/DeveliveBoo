@@ -14,19 +14,25 @@ const store = createStore({
         if (existingDish) {
           // Aggiorna la quantità del piatto esistente nel carrello
           existingDish.quantity++;
+          existingDish.totalPrice = existingDish.quantity * existingDish.price;
         } else {
           // Controlla se un piatto con lo stesso nome è già nel carrello
           const sameNamedDish = state.cart.find(item => item.name === dish.name);
           if (sameNamedDish) {
             // Aggiorna la quantità del piatto esistente con lo stesso nome nel carrello
             sameNamedDish.quantity++;
+            sameNamedDish.totalPrice = sameNamedDish.quantity * sameNamedDish.price;
           } else {
             // Se il piatto non esiste nel carrello, aggiungilo normalmente
             dish.id = uuidv4();
             dish.quantity = 1;
+            dish.totalPrice = dish.price; 
             state.cart.push(dish);
           }
         } 
+        state.cart.forEach(item => {
+          item.totalPrice = item.quantity * item.price;
+        });
       } else {
         const confirmNewCart = window.confirm('Il piatto selezionato non appartiene al ristorante corrente. Vuoi creare un nuovo carrello?');
         if (confirmNewCart) {
@@ -34,6 +40,7 @@ const store = createStore({
         state.cart = [];
         dish.id = uuidv4();
         dish.quantity = 1;
+        dish.totalPrice = dish.price;
         state.cart.push(dish);
         state.currentRestaurantId = dish.restaurant_id;
         } else {

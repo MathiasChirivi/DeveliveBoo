@@ -5,9 +5,9 @@ import store from './store'; // Importa il tuo store Vuex
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket);
+library.add(faClock, faTrophy, faCheckCircle, faArrowLeft, faShoppingBasket, faTrash);
 
 const app = createApp(App);
 

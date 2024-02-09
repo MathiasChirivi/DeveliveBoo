@@ -119,11 +119,15 @@ export default {
           <div class="card h-100" @click="showRestaurantDetails(restaurant.id)">
             <div class="h-100">
               <img
-  :src="restaurant.photo ? restaurant.photo : 'https://cwdaust.com.au/wpress/wp-content/uploads/2015/04/placeholder-restaurant.png'"
-  class="card-img-top"
-  alt="Restaurant Photo"
-  style="height: 300px"
-/>
+                :src="
+                  restaurant.photo
+                    ? restaurant.photo
+                    : 'https://cwdaust.com.au/wpress/wp-content/uploads/2015/04/placeholder-restaurant.png'
+                "
+                class="card-img-top"
+                alt="Restaurant Photo"
+                style="height: 300px"
+              />
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ restaurant.name }}</h5>
