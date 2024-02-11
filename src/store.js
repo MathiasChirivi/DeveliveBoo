@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import { v4 as uuidv4 } from 'uuid';
 
 const store = createStore({
   state: {
@@ -24,7 +23,6 @@ const store = createStore({
             sameNamedDish.totalPrice = sameNamedDish.quantity * sameNamedDish.price;
           } else {
             // Se il piatto non esiste nel carrello, aggiungilo normalmente
-            dish.id = uuidv4();
             dish.quantity = 1;
             dish.totalPrice = dish.price; 
             state.cart.push(dish);
@@ -38,7 +36,6 @@ const store = createStore({
         if (confirmNewCart) {
         // Se il piatto non appartiene al ristorante corrente, resetta il carrello e aggiungi il nuovo piatto
         state.cart = [];
-        dish.id = uuidv4();
         dish.quantity = 1;
         dish.totalPrice = dish.price;
         state.cart.push(dish);
@@ -65,7 +62,6 @@ const store = createStore({
       commit('addToCart', dish); 
     },
     removeFromCart({ commit, state }, dish) {
-     
       const filteredCart = state.cart.filter(cartDish => cartDish.id !== dish.id);
       commit('setCart', filteredCart); 
     },

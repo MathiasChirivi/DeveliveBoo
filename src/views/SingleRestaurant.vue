@@ -1,6 +1,5 @@
 <script>
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 export default {
   data() {
@@ -39,7 +38,6 @@ export default {
       this.$router.go(-1);
     },
     addToCart(dish) {
-      dish.id = uuidv4();
       this.$store.dispatch("addToCart", dish);
       this.calculateCartTotal(); // Aggiorna il totale dopo l'aggiunta
     },
@@ -131,13 +129,13 @@ export default {
           </div>
         </div>
         <div class="col-3 mt-3">
-          <div class="carello flex-column align-items-center">
+          <div class="carrello flex-column align-items-center">
             <div
               class="d-flex flex-column justify-content-center align-items-center"
               v-if="cartIsEmpty"
             >
               <font-awesome-icon :icon="['fas', 'basket-shopping']" />
-              <p class="mt-2">Il carello è vuoto</p>
+              <p class="mt-2">Il carrello è vuoto</p>
             </div>
 
             <div class="w-100 payFinish" v-if="!cartIsEmpty">
@@ -183,14 +181,15 @@ export default {
                 </button>
               </div> -->
             </div>
-            <div class="PagamentoCarello">
-              <button
-                type="button"
+            <div class="PagamentoCarrello">
+              
+              <a 
+                href="http://localhost:5174/sendOrder"
                 class="btn btn-secondary"
                 :disabled="cartIsEmpty"
               >
                 Vai al pagamento
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -277,7 +276,7 @@ export default {
   border-bottom: 1px solid black;
 }
 
-.carello {
+.carrello {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -291,7 +290,7 @@ export default {
   padding: 30px;
 }
 
-.PagamentoCarello {
+.PagamentoCarrello {
   margin-top: 20px;
 }
 
