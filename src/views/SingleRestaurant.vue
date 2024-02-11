@@ -131,13 +131,13 @@ export default {
           </div>
         </div>
         <div class="col-3 mt-3">
-          <div class="carello flex-column align-items-center">
+          <div class="carrello flex-column align-items-center">
             <div
               class="d-flex flex-column justify-content-center align-items-center"
               v-if="cartIsEmpty"
             >
               <font-awesome-icon :icon="['fas', 'basket-shopping']" />
-              <p class="mt-2">Il carello è vuoto</p>
+              <p class="mt-2">Il carrello è vuoto</p>
             </div>
 
             <div class="w-100 payFinish" v-if="!cartIsEmpty">
@@ -183,7 +183,7 @@ export default {
                 </button>
               </div> -->
             </div>
-            <div class="PagamentoCarello">
+            <div class="PagamentoCarrello">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -277,7 +277,7 @@ export default {
   border-bottom: 1px solid black;
 }
 
-.carello {
+.carrello {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -291,7 +291,7 @@ export default {
   padding: 30px;
 }
 
-.PagamentoCarello {
+.PagamentoCarrello {
   margin-top: 20px;
 }
 
