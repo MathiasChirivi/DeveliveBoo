@@ -1,6 +1,5 @@
 <script>
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 export default {
   data() {
@@ -39,7 +38,6 @@ export default {
       this.$router.go(-1);
     },
     addToCart(dish) {
-      dish.id = uuidv4();
       this.$store.dispatch("addToCart", dish);
       this.calculateCartTotal(); // Aggiorna il totale dopo l'aggiunta
     },
@@ -184,13 +182,14 @@ export default {
               </div> -->
             </div>
             <div class="PagamentoCarrello">
-              <button
-                type="button"
+              
+              <a 
+                href="http://localhost:5174/sendOrder"
                 class="btn btn-secondary"
                 :disabled="cartIsEmpty"
               >
                 Vai al pagamento
-              </button>
+              </a>
             </div>
           </div>
         </div>
